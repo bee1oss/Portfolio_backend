@@ -1,6 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import checkAuth from "./utils/checkAuth.js";
+import {loginValidation} from "./validations.js";
+import hangleValidator from "./utils/handleValidator.js";
+import { ContactController,UserController } from "./controller/index.js";
 
 
 
@@ -14,3 +18,9 @@ mongoose
 
 app.use(cors());
 app.use(express.json());
+
+
+app.post('/contact',checkAuth,)
+
+app.post('/auth/login',loginValidation, hangleValidator, UserController.login);//login olurken auth islemi
+app.post('/auth/register', hangleValidator, UserController.register);//uye olma islemii
